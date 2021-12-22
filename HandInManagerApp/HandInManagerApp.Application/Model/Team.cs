@@ -8,12 +8,13 @@ namespace HandInManagerApp.Application.Model
 {
     public class Team
     {
-        public Team(string name, string schoolclass, string? comment = null)
+        public Team(string name, string schoolclass, bool visibility, string? comment = null)
         {
             Name = name;
             Schoolclass = schoolclass;
             Created = DateTime.UtcNow;
             Comment = comment;
+            Visibility = visibility;
         }
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         protected Team() { }
@@ -25,6 +26,7 @@ namespace HandInManagerApp.Application.Model
         public string Schoolclass { get; set; }
         public DateTime Created { get; protected set; }
         public string? Comment { get; set; }
+        public bool Visibility { get; set; }
         public int NameLength => Name.Length;
     }
 }

@@ -1,0 +1,24 @@
+﻿@page
+@model HandInManagerApp.Webapp.Pages.Teams.IndexModel
+<h4>Alle Teams</h4>
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>Teamname</th>
+            <th>Klasse</th>
+            <th>Comment</th>
+            <th>Visible?</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var t in Model.Teams)
+        {
+            <tr>
+                <td>@t.Name</td>
+                <td>@t.Schoolclass</td>
+                <td>@t.Comment</td>
+                <td>@t.Visibility</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -27,6 +27,7 @@ namespace HandInManagerApp.Application.Infrastructure
                 return new Team(
                     name: $"SJ21/22_{klasse}",
                     schoolclass: klasse,
+                    visibility: f.Random.Bool(0.5f),
                     comment: f.Music.Genre().OrDefault(f, 0.25f));  // OrDefault für NULL
             })
             .Generate(10)

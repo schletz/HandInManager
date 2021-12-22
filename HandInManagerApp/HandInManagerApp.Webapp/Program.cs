@@ -1,7 +1,28 @@
+using HandInManagerApp.Application.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+// Seeden der Datenbank
+var opt = new DbContextOptionsBuilder()
+    .UseSqlite("Data Source=HandIn.db")  // builder.Configuration["ConnectionString"]
+    .Options;
+using (var db = new HandInContext(opt))
+{
+    db.Database.EnsureDeleted();
+    db.Database.EnsureCreated();
+    db.Seed();
+}  // Dispose() wird aufgerufen
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<HandInContext>(opt =>
+{
+    // Alternativ: In appsettings.json einen Key ConnectionString anlegen
+    // und builder.Configuration["ConnectionString"] verwenden.
+    opt.UseSqlite("Data Source=HandIn.db");
+});
+
 
 var app = builder.Build();
 
